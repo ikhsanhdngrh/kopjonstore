@@ -1,3 +1,26 @@
+<?php
+session_start();
+include "./data/code.php";
+$code = new Code();
+if(isset($_POST['login_btn']))
+{   
+    // validasi text untuk filter karakter khusus dengan fungsi strip_tags()
+    $user = strip_tags($_POST['username']);
+    $pass = strip_tags($_POST['password']);
+    // panggil fungsi proses_login() yang ada di class prosesCrud()
+    $result = $code->proses_login($user,$pass);
+    if($result == 'gagal')
+    {
+        echo "<script>alert('Username atau Password Salah!'); window.location = 'index.php'</script>";
+    }else{
+        // status yang diberikan 
+        session_start();
+        $_SESSION['admin'] = $result;
+        // status yang diberikan 
+        echo "<script>window.location='./pages/barang_read.php';</script>";
+    }
+}?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -16,17 +39,17 @@
             <div class="col-lg-4 bg-white m-auto rounded-top wrapper">
                 <h2 class="text-center pt-3">Kopjon Store</h2>
                 <!-- Form Start -->
-                <form action="../pages/home.html">
+                <form action="" method="post">
                     <div class="input-group mb-3">
                         <span class="input-group-text"><i class="fa fa-envelope"></i></span>
-                        <input type="text" class="form-control" placeholder="Email">
+                        <input type="text" name="username" class="form-control" placeholder="Username" />
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text"><i class="fa fa-lock"></i></span>
-                        <input type="text" class="form-control" placeholder="Password">
+                        <input type="text" name="password" class="form-control" placeholder="Password" />
                     </div>
                     <div class="d-grid">
-                        <button type="submit" class="btn btn-dark">Login Now</button>
+                        <button type="submit" class="btn btn-dark" name="login_btn">Login Now</button>
                         <p class="text-center mb-3">
                            
                         </p>

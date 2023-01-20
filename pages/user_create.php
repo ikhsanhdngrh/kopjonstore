@@ -2,15 +2,15 @@
 session_start();
 include "../data/code.php";
 $code = new Code();
+if (isset($_POST['user_add_btn'])) {
+    $level = $_POST['level'];
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $email = $_POST['email'];
 
-if (isset($_POST['barang_add_btn'])) {
-    $nmbarang = $_POST['nmbarang'];
-    $jumlah = $_POST['jumlah'];
-    $harga = $_POST['harga'];
-
-    $add_status = $code->add_data($nmbarang, $jumlah, $harga);
+    $add_status = $code->add_data_user($level, $username, $password, $email);
     if ($add_status) {
-        header('Location: barang_read.php');
+        header('Location: user_read.php');
     }
 }
 ?>
@@ -49,26 +49,30 @@ if (isset($_POST['barang_add_btn'])) {
                 <!-- form start -->
                 <div class="card">
                     <div class="card-header">
-                        <h3>Tambah data barang
-                            <a href="barang_read.php" class="btn btn-danger float-end">Back</a>
+                        <h3>Tambah data user
+                            <a href="user_read.php" class="btn btn-danger float-end">Back</a>
                         </h3>
                     </div>
                     <div class="card-body">
                         <form action="" method="POST">
                             <div class="mb-3">
-                                <label>Nama Barang</label>
-                                <input type="text" name="nmbarang" class="form-control" />
+                                <label>Level</label>
+                                <input type="text" name="level" class="form-control" />
+                            </div>    
+                            <div class="mb-3">
+                                <label>Username</label>
+                                <input type="text" name="username" class="form-control" />
                             </div>
                             <div class="mb-3">
-                                <label>Jumlah</label>
-                                <input type="text" name="jumlah" class="form-control" />
+                                <label>Password</label>
+                                <input type="text" name="password" class="form-control" />
                             </div>
                             <div class="mb-3">
-                                <label>Harga</label> 
-                                <input type="text" name="harga" class="form-control" />
+                                <label>Email</label> 
+                                <input type="text" name="email" class="form-control" />
                             </div>
                             <div class="mb-3">
-                                <button type="submit" name="barang_add_btn" class="btn btn-primary">Tambah Barang</button>
+                                <button type="submit" name="user_add_btn" class="btn btn-primary">Tambah User</button>
                             </div>
                         </form>
                     </div>

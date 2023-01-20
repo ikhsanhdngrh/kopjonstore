@@ -13,13 +13,37 @@
         >
           <span class="navbar-toggler-icon"></span>
         </button>
+        <?php
+          if (!empty($_SESSION['username']) and $_SESSION['level']=="admin"){ ?>
         <div class="collapse navbar-collapse text-right" id="navbarText">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link" href="../index.php">Login</a>
-            </li>
+          <li class="nav-item dropdown">
+          <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            Welcome,<?php echo $_SESSION['username']; ?>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-dark">
+            <li><a class="dropdown-item" href="../pages/user_read.php">Data User</a></li>
+            <li><a class="dropdown-item" href="../pages/barang_read.php">Data Barang</a></li>
+            <li><a class="dropdown-item" href="../logout.php">Logout</a></li>
+          </ul>
+        </li>
           </ul>
         </div>
+
+        <?php } else if (!empty($_SESSION['username']) and $_SESSION['level']=="user"){?>
+        <div class="collapse navbar-collapse text-right" id="navbarText">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item dropdown">
+          <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            Welcome, <?php echo $_SESSION['username']; ?>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-dark">
+            <li><a class="dropdown-item" href="../logout.php">Logout</a></li>
+          </ul>
+        </li>
+          </ul>
+        </div>
+        <?php }?>
       </div>
     </nav>
     <!-- Nav bar end -->

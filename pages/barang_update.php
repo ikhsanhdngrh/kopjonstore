@@ -1,6 +1,27 @@
 <?php
 session_start();
 include "../data/code.php";
+$code = new Code();
+if(isset($_GET['id'])){
+    $id = $_GET['id']; 
+    $data_barang = $code->get_by_id($id);
+}
+else
+{
+    header('Location: barang_read.php');
+}
+ 
+if(isset($_POST['barang_update_btn'])){
+    $id = $_POST['id'];
+    $nmbarang = $_POST['nmbarang'];
+    $jumlah = $_POST['jumlah'];
+    $harga = $_POST['harga']; 
+    $status_update = $code->update($id,$nmbarang,$jumlah,$harga);
+    if($status_update)
+    {
+        header('Location:barang_read.php');
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,32 +63,19 @@ include "../data/code.php";
                         </h3>
                     </div>
                     <div class="card-body">
-                        <?php
-                        if(isset($_GET['id'])){
-                            $id = $_GET['id'];
-
-                            $query = "SELECT * FROM data_barang WHERE id=:id LIMIT 1";
-                            $statement = $conn->prepare($query);
-                            $data = [':id' => $id];
-                            $statement->execute($data);
-
-                            $result = $statement->fetch(PDO::FETCH_OBJ);
-
-                        }
-                        ?>
-                        <form action="../data/code.php" method="POST">
-                            <input type="hidden" name="id" value="<?= $result->id; ?>"/>
+                        <form action="" method="POST">
+                            <input type="hidden" name="id" value="<?php echo $data_barang['id']; ?>"/>
                             <div class="mb-3">
                                 <label>Nama Barang</label>
-                                <input type="text" name="nmbarang" value="<?= $result->nmbarang; ?>" class="form-control" />
+                                <input type="text" name="nmbarang" value="<?php echo $data_barang['nmbarang']; ?>" class="form-control" />
                             </div>
                             <div class="mb-3">
                                 <label>Jumlah</label>
-                                <input type="text" name="jumlah" value="<?= $result->jumlah; ?>" class="form-control" />
+                                <input type="text" name="jumlah" value="<?php echo $data_barang['jumlah']; ?>" class="form-control" />
                             </div>
                             <div class="mb-3">
                                 <label>Harga</label> 
-                                <input type="text" name="harga" value="<?= $result->harga; ?>" class="form-control" />
+                                <input type="text" name="harga" value="<?php echo $data_barang['harga']; ?>" class="form-control" />
                             </div>
                             <div class="mb-3">
                                 <button type="submit" name="barang_update_btn" class="btn btn-primary">Edit Barang</button>

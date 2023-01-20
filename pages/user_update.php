@@ -2,15 +2,25 @@
 session_start();
 include "../data/code.php";
 $code = new Code();
-
-if (isset($_POST['barang_add_btn'])) {
-    $nmbarang = $_POST['nmbarang'];
-    $jumlah = $_POST['jumlah'];
-    $harga = $_POST['harga'];
-
-    $add_status = $code->add_data($nmbarang, $jumlah, $harga);
-    if ($add_status) {
-        header('Location: barang_read.php');
+if(isset($_GET['id'])){
+    $id = $_GET['id']; 
+    $data_user = $code->get_by_id_user($id);
+}
+else
+{
+    header('Location: user_read.php');
+}
+ 
+if(isset($_POST['user_update_btn'])){
+    $id = $_POST['id'];
+    $level = $_POST['level'];
+    $username = $_POST['username'];
+    $password = $_POST['password']; 
+    $email = $_POST['email']; 
+    $status_update = $code->update_user($id,$level,$username,$password,$email);
+    if($status_update)
+    {
+        header('Location:user_read.php');
     }
 }
 ?>
@@ -20,7 +30,7 @@ if (isset($_POST['barang_add_btn'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tambah Barang</title>
+    <title>Edit Barang</title>
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/all.min.css">
     <link rel="stylesheet" href="./css/style.css">
@@ -49,26 +59,31 @@ if (isset($_POST['barang_add_btn'])) {
                 <!-- form start -->
                 <div class="card">
                     <div class="card-header">
-                        <h3>Tambah data barang
-                            <a href="barang_read.php" class="btn btn-danger float-end">Back</a>
+                        <h3>Edit data user
+                            <a href="user_read.php" class="btn btn-danger float-end">Back</a>
                         </h3>
                     </div>
                     <div class="card-body">
                         <form action="" method="POST">
+                            <input type="hidden" name="id" value="<?php echo $data_user['id']; ?>"/>
                             <div class="mb-3">
-                                <label>Nama Barang</label>
-                                <input type="text" name="nmbarang" class="form-control" />
+                                <label>Level</label>
+                                <input type="text" name="level" value="<?php echo $data_user['level']; ?>" class="form-control" />
                             </div>
                             <div class="mb-3">
-                                <label>Jumlah</label>
-                                <input type="text" name="jumlah" class="form-control" />
+                                <label>Username</label>
+                                <input type="text" name="username" value="<?php echo $data_user['username']; ?>" class="form-control" />
                             </div>
                             <div class="mb-3">
-                                <label>Harga</label> 
-                                <input type="text" name="harga" class="form-control" />
+                                <label>Password</label> 
+                                <input type="text" name="password" value="<?php echo $data_user['password']; ?>" class="form-control" />
                             </div>
                             <div class="mb-3">
-                                <button type="submit" name="barang_add_btn" class="btn btn-primary">Tambah Barang</button>
+                                <label>Email</label> 
+                                <input type="text" name="email" value="<?php echo $data_user['email']; ?>" class="form-control" />
+                            </div>
+                            <div class="mb-3">
+                                <button type="submit" name="user_update_btn" class="btn btn-primary">Edit User</button>
                             </div>
                         </form>
                     </div>

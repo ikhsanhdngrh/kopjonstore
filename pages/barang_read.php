@@ -1,6 +1,18 @@
 <?php
 session_start();
 include "../data/code.php";
+$code = new Code();
+$data_barang = $code->show();
+
+if(isset($_GET['barang_delete']))
+{
+    $id = $_GET['barang_delete'];
+    $status_hapus = $code->delete($id);
+    if($status_hapus)
+    {
+        header('Location: barang_read.php');
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,7 +50,9 @@ include "../data/code.php";
                 <!-- form start -->
                 <div class="card">
                     <div class="card-header">
-                        <h3>Data Barang</h3>
+                        <h3>Data Barang
+                        <a href="barang_create.php" class="btn btn-success float-end" >Tambah Barang</a>
+                        </h3>
                     </div>
                     <div class="card-body">
                         <table class="table table-bordered table-striped">
@@ -46,53 +60,22 @@ include "../data/code.php";
                                 <th>ID</th>
                                 <th>Nama Barang</th>
                                 <th>Jumlah</th>
-                                <th>Harga</th>
+                                <th>Harga(Pcs)</th>
                                 <th colspan="2" class="text-center">Action</th>
                             </thead>
                             <tbody>
                                 <?php
-                                    $query = "SELECT * FROM data_barang";
-                                    $statement = $conn->prepare($query);
-                                    $statement->execute();
-                                
-                                    $statement->setFetchMode(PDO::FETCH_OBJ);
-                                    $result = $statement->fetchAll();
-                                if($result){
-                                    foreach($result as $row){
-                                        ?>
-                                        <tr>
-                                            <td><?= $row->id ?></td>
-                                            <td><?= $row->nmbarang ?></td>
-                                            <td><?= $row->jumlah ?></td>
-                                            <td><?= $row->harga ?></td>
-                                            <td class="text-center">
-                                                <a href="barang_update.php?id=<?= $row->id; ?>" class="btn btn-primary">Edit</a>
-                                            </td>
-                                            <td class="text-center">
-                                                <form action="../data/code.php" method="post">
-                                                    <button type="submit" name="barang_delete_btn" value="<?= $row->id; ?>" class="btn btn-danger">Delete</button>
-                                                </form>
-                                            </td>
-                                            
-                                        </tr>
-                                        <?php
+                                foreach ($data_barang as $row) {
 
-                                    }
-
-                                }
-                                else{
-                                ?>
-                                    <tr>
-                                        <td colspan="4">Data tidak ada!</td>
-                                    </tr>
-                                <?php
-
-
-                                    
+                                    echo "<tr>";
+                                    echo "<td>" . $row['id'] . "</td>";
+                                    echo "<td>" . $row['nmbarang'] . "</td>";
+                                    echo "<td>" . $row['jumlah'] . "</td>";
+                                    echo "<td>" . $row['harga'] . "</td>";
+                                    echo "<td class='text-center'><a class='btn btn-primary' href='barang_update.php?id=" . $row['id'] ."'>Edit</a></td>
+                                        <td class='text-center'><a class='btn btn-danger' href='barang_read.php?barang_delete=" . $row['id'] . "'>Hapus</a></td>";
+                                    echo "</tr>";
                                 }?>
-                                <tr>
-                                    <td></td>
-                                </tr>
                             </tbody>
                         </table>
                     </div>

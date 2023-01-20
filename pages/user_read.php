@@ -2,15 +2,15 @@
 session_start();
 include "../data/code.php";
 $code = new Code();
+$data_login = $code->show_user();
 
-if (isset($_POST['barang_add_btn'])) {
-    $nmbarang = $_POST['nmbarang'];
-    $jumlah = $_POST['jumlah'];
-    $harga = $_POST['harga'];
-
-    $add_status = $code->add_data($nmbarang, $jumlah, $harga);
-    if ($add_status) {
-        header('Location: barang_read.php');
+if(isset($_GET['user_delete']))
+{
+    $id = $_GET['user_delete'];
+    $status_hapus = $code->delete_user($id);
+    if($status_hapus)
+    {
+        header('Location: user_read.php');
     }
 }
 ?>
@@ -20,12 +20,13 @@ if (isset($_POST['barang_add_btn'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tambah Barang</title>
+    <title>Dashboard</title>
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/all.min.css">
     <link rel="stylesheet" href="./css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" 
     rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    
 </head>
 <body>
     <!-- Nav bar start -->
@@ -49,28 +50,34 @@ if (isset($_POST['barang_add_btn'])) {
                 <!-- form start -->
                 <div class="card">
                     <div class="card-header">
-                        <h3>Tambah data barang
-                            <a href="barang_read.php" class="btn btn-danger float-end">Back</a>
+                        <h3>Data Login
+                        <a href="user_create.php" class="btn btn-success float-end" >Tambah User</a>
                         </h3>
                     </div>
                     <div class="card-body">
-                        <form action="" method="POST">
-                            <div class="mb-3">
-                                <label>Nama Barang</label>
-                                <input type="text" name="nmbarang" class="form-control" />
-                            </div>
-                            <div class="mb-3">
-                                <label>Jumlah</label>
-                                <input type="text" name="jumlah" class="form-control" />
-                            </div>
-                            <div class="mb-3">
-                                <label>Harga</label> 
-                                <input type="text" name="harga" class="form-control" />
-                            </div>
-                            <div class="mb-3">
-                                <button type="submit" name="barang_add_btn" class="btn btn-primary">Tambah Barang</button>
-                            </div>
-                        </form>
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <th>ID</th>
+                                <th>Username</th>
+                                <th>Password</th>
+                                <th>Email</th>
+                                <th colspan="2" class="text-center">Action</th>
+                            </thead>
+                            <tbody>
+                                <?php
+                                foreach ($data_login as $row) {
+
+                                    echo "<tr>";
+                                    echo "<td>" . $row['id'] . "</td>";
+                                    echo "<td>" . $row['username'] . "</td>";
+                                    echo "<td>" . $row['password'] . "</td>";
+                                    echo "<td>" . $row['email'] . "</td>";
+                                    echo "<td class='text-center'><a class='btn btn-primary' href='user_update.php?id=" . $row['id'] ."'>Edit</a></td>
+                                        <td class='text-center'><a class='btn btn-danger' href='user_read.php?user_delete=" . $row['id'] . "'>Hapus</a></td>";
+                                    echo "</tr>";
+                                }?>
+                            </tbody>
+                        </table>
                     </div>
                     
 
@@ -80,7 +87,6 @@ if (isset($_POST['barang_add_btn'])) {
         </div>
     </div>
     <!-- content end -->
-    
     
       <!-- copyright start -->
       <div class="container text-center pt-5 pb-5">
