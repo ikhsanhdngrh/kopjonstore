@@ -98,7 +98,7 @@ class Code
         
     }
 
-    //Tabel Login
+    //Tabel login
     public function add_data_user($level, $username, $password, $email){
         $data = $this->db->prepare('INSERT INTO data_login (level,username,password,email) VALUES (?, ?, ?, ?)');
         
