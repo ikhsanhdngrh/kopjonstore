@@ -1,7 +1,7 @@
 <!-- Nav bar start -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-lg fixed-top">
       <div class="container">
-        <a class="navbar-brand" href="#">Kopjon Store</a>
+        <a class="navbar-brand" href="../pages/barang_read.php">Kopjon Store</a>
         <button
           class="navbar-toggler"
           type="button"

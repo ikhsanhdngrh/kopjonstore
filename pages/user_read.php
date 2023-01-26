@@ -50,7 +50,7 @@ if(isset($_GET['user_delete']))
                 <!-- form start -->
                 <div class="card">
                     <div class="card-header">
-                        <h3>Data Login
+                        <h3>Data User
                         <a href="user_create.php" class="btn btn-success float-end" >Tambah User</a>
                         </h3>
                     </div>
@@ -73,7 +73,27 @@ if(isset($_GET['user_delete']))
                                     echo "<td>" . $row['password'] . "</td>";
                                     echo "<td>" . $row['email'] . "</td>";
                                     echo "<td class='text-center'><a class='btn btn-primary' href='user_update.php?id=" . $row['id'] ."'>Edit</a></td>
-                                        <td class='text-center'><a class='btn btn-danger' href='user_read.php?user_delete=" . $row['id'] . "'>Hapus</a></td>";
+                                        <td class='text-center'><button type='button' class='btn btn-danger' data-bs-toggle='modal' data-bs-target='#hapus".$row['id'] ."'>
+                                        Hapus</button></td>
+
+                                        <!--Pesan Confirmasi Hapus Data -->
+                                        <div class='modal' id='hapus".$row['id'] ."' tabindex='-1'>
+                                        <div class='modal-dialog'>
+                                          <div class='modal-content'>
+                                            <div class='modal-header'>
+                                              <h5 class='modal-title'>Hapus Data</h5>
+                                              <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+                                            </div>
+                                            <div class='modal-body'>
+                                              <p>Apakah anda yakin untuk menghapus data?</p>
+                                            </div>
+                                            <div class='modal-footer'>
+                                              <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Close</button>
+                                              <a class='btn btn-danger' href='user_read.php?user_delete=" . $row['id'] . "'>Hapus</a>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>";
                                     echo "</tr>";
                                 }?>
                             </tbody>
@@ -90,7 +110,7 @@ if(isset($_GET['user_delete']))
     
       <!-- copyright start -->
       <div class="container text-center pt-5 pb-5">
-        All Rights Reserved &copy; 2022
+        All Rights Reserved &copy; 2023
       </div>
       <!-- copyright end -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" 

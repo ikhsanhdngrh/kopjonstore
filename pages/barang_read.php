@@ -73,9 +73,29 @@ if(isset($_GET['barang_delete']))
                                     echo "<td>" . $row['jumlah'] . "</td>";
                                     echo "<td>" . $row['harga'] . "</td>";
                                     echo "<td class='text-center'><a class='btn btn-primary' href='barang_update.php?id=" . $row['id'] ."'>Edit</a></td>
-                                        <td class='text-center'><a class='btn btn-danger' href='barang_read.php?barang_delete=" . $row['id'] . "'>Hapus</a></td>";
-                                    echo "</tr>";
-                                }?>
+                                    <td class='text-center'><button type='button' class='btn btn-danger' data-bs-toggle='modal' data-bs-target='#hapus".$row['id'] ."'>
+                                    Hapus</button></td>
+                                    
+                                    <!--Pesan Confirmasi Hapus Data -->
+                                    <div class='modal' id='hapus".$row['id'] ."' tabindex='-1'>
+                                    <div class='modal-dialog'>
+                                      <div class='modal-content'>
+                                        <div class='modal-header'>
+                                          <h5 class='modal-title'>Hapus Data</h5>
+                                          <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+                                        </div>
+                                        <div class='modal-body'>
+                                          <p>Apakah anda yakin untuk menghapus data?</p>
+                                        </div>
+                                        <div class='modal-footer'>
+                                          <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Close</button>
+                                          <a class='btn btn-danger' href='barang_read.php?barang_delete=" . $row['id'] . "'>Hapus</a>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>";
+                                echo "</tr>";
+                            }?>
                             </tbody>
                         </table>
                     </div>
@@ -90,7 +110,7 @@ if(isset($_GET['barang_delete']))
     
       <!-- copyright start -->
       <div class="container text-center pt-5 pb-5">
-        All Rights Reserved &copy; 2022
+        All Rights Reserved &copy; 2023
       </div>
       <!-- copyright end -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" 

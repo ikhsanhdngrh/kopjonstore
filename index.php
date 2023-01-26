@@ -2,16 +2,23 @@
 session_start();
 include "./data/code.php";
 $code = new Code();
+$user = $pass = $cek_err = "";
 if(isset($_POST['login_btn']))
 {   
+    
     // validasi text untuk filter karakter khusus dengan fungsi strip_tags()
     $user = strip_tags($_POST['username']);
     $pass = strip_tags($_POST['password']);
-    // panggil fungsi proses_login() yang ada di class prosesCrud()
+    // panggil fungsi proses_login() yang ada di class code()
     $result = $code->proses_login($user,$pass);
     if($result == 'gagal')
     {
-        echo "<script>alert('Username atau Password Salah!'); window.location = 'index.php'</script>";
+        if (empty($user) && empty($pass)) {
+            $cek_err = "Form tidak boleh kosong!";
+        }else{
+            echo "<script>alert('Username atau Password Salah!'); window.location = 'index.php'</script>";
+        }
+        
     }else{
         // status yang diberikan 
         session_start();
@@ -19,7 +26,10 @@ if(isset($_POST['login_btn']))
         // status yang diberikan 
         echo "<script>window.location='./pages/barang_read.php';</script>";
     }
-}?>
+
+    
+}
+?>
 
 <!doctype html>
 <html lang="en">
@@ -39,20 +49,21 @@ if(isset($_POST['login_btn']))
             <div class="col-lg-4 bg-white m-auto rounded-top wrapper">
                 <h2 class="text-center pt-3">Kopjon Store</h2>
                 <!-- Form Start -->
-                <form action="" method="post">
+                <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
                     <div class="input-group mb-3">
                         <span class="input-group-text"><i class="fa fa-envelope"></i></span>
                         <input type="text" name="username" class="form-control" placeholder="Username" />
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text"><i class="fa fa-lock"></i></span>
-                        <input type="text" name="password" class="form-control" placeholder="Password" />
+                        <input type="password" name="password" class="form-control" placeholder="Password" />
                     </div>
                     <div class="d-grid">
-                        <button type="submit" class="btn btn-dark" name="login_btn">Login Now</button>
-                        <p class="text-center mb-3">
-                           
-                        </p>
+                    <p class="text-center mb-1 text-danger" >
+                           <?php echo $cek_err; ?>
+                        </p>    
+                    <button type="submit" class="btn btn-dark" name="login_btn">Login Now</button>
+                        
                     </div>
                 </form>
                 <!-- Form Close -->

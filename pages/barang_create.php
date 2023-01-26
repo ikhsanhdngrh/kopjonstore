@@ -84,7 +84,7 @@ if (isset($_POST['barang_add_btn'])) {
     
       <!-- copyright start -->
       <div class="container text-center pt-5 pb-5">
-        All Rights Reserved &copy; 2022
+        All Rights Reserved &copy; 2023
       </div>
       <!-- copyright end -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" 

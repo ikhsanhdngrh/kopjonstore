@@ -23,6 +23,8 @@ if(isset($_POST['user_update_btn'])){
         header('Location:user_read.php');
     }
 }
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -68,7 +70,22 @@ if(isset($_POST['user_update_btn'])){
                             <input type="hidden" name="id" value="<?php echo $data_user['id']; ?>"/>
                             <div class="mb-3">
                                 <label>Level</label>
-                                <input type="text" name="level" value="<?php echo $data_user['level']; ?>" class="form-control" />
+                                <br>
+                                <?php
+                                $selected = $data_user['level'];
+                                $option = array('admin', 'user');
+
+                                echo "<select id='level' name='level' select class='form-select' aria-label='Default select example'>";
+                                foreach($option as $option){
+                                    if($selected == $option){
+                                        echo "<option value='$option' selected='selected'>$option</option>";
+                                    }else{
+                                        echo "<option value='$option'>$option</option>";
+                                    }
+                                    
+                                }
+                                echo "</select>"
+                                ?>
                             </div>
                             <div class="mb-3">
                                 <label>Username</label>
@@ -99,7 +116,7 @@ if(isset($_POST['user_update_btn'])){
     
       <!-- copyright start -->
       <div class="container text-center pt-5 pb-5">
-        All Rights Reserved &copy; 2022
+        All Rights Reserved &copy; 2023
       </div>
       <!-- copyright end -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" 
