@@ -1,7 +1,7 @@
 <!-- Nav bar start -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-lg fixed-top">
       <div class="container">
-        <a class="navbar-brand" href="../pages/barang_read.php">Kopjon Store</a>
+        <a class="navbar-brand" href="../pages/baju_read.php">Kopjon Store</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -23,7 +23,7 @@
           </button>
           <ul class="dropdown-menu dropdown-menu-dark">
             <li><a class="dropdown-item" href="../pages/user_read.php">Data User</a></li>
-            <li><a class="dropdown-item" href="../pages/barang_read.php">Data Barang</a></li>
+            <li><a class="dropdown-item" href="../pages/baju_read.php">Data Baju</a></li>
             <li><a class="dropdown-item" href="../logout.php">Logout</a></li>
           </ul>
         </li>

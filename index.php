@@ -63,7 +63,9 @@ if(isset($_POST['login_btn']))
                            <?php echo $cek_err; ?>
                         </p>    
                     <button type="submit" class="btn btn-dark" name="login_btn">Login Now</button>
-                        
+                    <p class="text-center mb-3">
+                            Belum punya akun ? <a href="register.php">Register disini</a>
+                        </p>    
                     </div>
                 </form>
                 <!-- Form Close -->

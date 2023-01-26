@@ -4,22 +4,22 @@ include "../data/code.php";
 $code = new Code();
 if(isset($_GET['id'])){
     $id = $_GET['id']; 
-    $data_barang = $code->get_by_id($id);
+    $data_baju = $code->get_by_id($id);
 }
 else
 {
-    header('Location: barang_read.php');
+    header('Location: baju_read.php');
 }
  
-if(isset($_POST['barang_update_btn'])){
+if(isset($_POST['baju_update_btn'])){
     $id = $_POST['id'];
-    $nmbarang = $_POST['nmbarang'];
+    $nmbaju = $_POST['nmbaju'];
     $jumlah = $_POST['jumlah'];
     $harga = $_POST['harga']; 
-    $status_update = $code->update($id,$nmbarang,$jumlah,$harga);
+    $status_update = $code->update($id,$nmbaju,$jumlah,$harga);
     if($status_update)
     {
-        header('Location:barang_read.php');
+        header('Location:baju_read.php');
     }
 }
 ?>
@@ -29,7 +29,7 @@ if(isset($_POST['barang_update_btn'])){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Barang</title>
+    <title>Edit Baju</title>
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/all.min.css">
     <link rel="stylesheet" href="./css/style.css">
@@ -58,27 +58,27 @@ if(isset($_POST['barang_update_btn'])){
                 <!-- form start -->
                 <div class="card">
                     <div class="card-header">
-                        <h3>Edit data barang
-                            <a href="barang_read.php" class="btn btn-danger float-end">Back</a>
+                        <h3>Edit data baju
+                            <a href="baju_read.php" class="btn btn-danger float-end">Back</a>
                         </h3>
                     </div>
                     <div class="card-body">
                         <form action="" method="POST">
-                            <input type="hidden" name="id" value="<?php echo $data_barang['id']; ?>"/>
+                            <input type="hidden" name="id" value="<?php echo $data_baju['id']; ?>"/>
                             <div class="mb-3">
-                                <label>Nama Barang</label>
-                                <input type="text" name="nmbarang" value="<?php echo $data_barang['nmbarang']; ?>" class="form-control" />
+                                <label>Nama Baju</label>
+                                <input type="text" name="nmbaju" value="<?php echo $data_baju['nmbaju']; ?>" class="form-control" />
                             </div>
                             <div class="mb-3">
                                 <label>Jumlah</label>
-                                <input type="text" name="jumlah" value="<?php echo $data_barang['jumlah']; ?>" class="form-control" />
+                                <input type="text" name="jumlah" value="<?php echo $data_baju['jumlah']; ?>" class="form-control" />
                             </div>
                             <div class="mb-3">
                                 <label>Harga</label> 
-                                <input type="text" name="harga" value="<?php echo $data_barang['harga']; ?>" class="form-control" />
+                                <input type="text" name="harga" value="<?php echo $data_baju['harga']; ?>" class="form-control" />
                             </div>
                             <div class="mb-3">
-                                <button type="submit" name="barang_update_btn" class="btn btn-primary">Edit Barang</button>
+                                <button type="submit" name="baju_update_btn" class="btn btn-primary">Edit Baju</button>
                             </div>
                         </form>
                     </div>

@@ -2,15 +2,15 @@
 session_start();
 include "../data/code.php";
 $code = new Code();
-$data_barang = $code->show();
+$data_baju = $code->show();
 
-if(isset($_GET['barang_delete']))
+if(isset($_GET['baju_delete']))
 {
-    $id = $_GET['barang_delete'];
+    $id = $_GET['baju_delete'];
     $status_hapus = $code->delete($id);
     if($status_hapus)
     {
-        header('Location: barang_read.php');
+        header('Location: baju_read.php');
     }
 }
 ?>
@@ -50,29 +50,29 @@ if(isset($_GET['barang_delete']))
                 <!-- form start -->
                 <div class="card">
                     <div class="card-header">
-                        <h3>Data Barang
-                        <a href="barang_create.php" class="btn btn-success float-end" >Tambah Barang</a>
+                        <h3>Data Baju
+                        <a href="baju_create.php" class="btn btn-success float-end" >Tambah Baju</a>
                         </h3>
                     </div>
                     <div class="card-body">
                         <table class="table table-bordered table-striped">
                             <thead>
                                 <th>ID</th>
-                                <th>Nama Barang</th>
+                                <th>Nama Baju</th>
                                 <th>Jumlah</th>
                                 <th>Harga(Pcs)</th>
                                 <th colspan="2" class="text-center">Action</th>
                             </thead>
                             <tbody>
                                 <?php
-                                foreach ($data_barang as $row) {
+                                foreach ($data_baju as $row) {
 
                                     echo "<tr>";
                                     echo "<td>" . $row['id'] . "</td>";
-                                    echo "<td>" . $row['nmbarang'] . "</td>";
+                                    echo "<td>" . $row['nmbaju'] . "</td>";
                                     echo "<td>" . $row['jumlah'] . "</td>";
                                     echo "<td>" . $row['harga'] . "</td>";
-                                    echo "<td class='text-center'><a class='btn btn-primary' href='barang_update.php?id=" . $row['id'] ."'>Edit</a></td>
+                                    echo "<td class='text-center'><a class='btn btn-primary' href='baju_update.php?id=" . $row['id'] ."'>Edit</a></td>
                                     <td class='text-center'><button type='button' class='btn btn-danger' data-bs-toggle='modal' data-bs-target='#hapus".$row['id'] ."'>
                                     Hapus</button></td>
                                     
@@ -89,7 +89,7 @@ if(isset($_GET['barang_delete']))
                                         </div>
                                         <div class='modal-footer'>
                                           <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Close</button>
-                                          <a class='btn btn-danger' href='barang_read.php?barang_delete=" . $row['id'] . "'>Hapus</a>
+                                          <a class='btn btn-danger' href='baju_read.php?baju_delete=" . $row['id'] . "'>Hapus</a>
                                         </div>
                                       </div>
                                     </div>

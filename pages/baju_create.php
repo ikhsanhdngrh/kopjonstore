@@ -3,14 +3,14 @@ session_start();
 include "../data/code.php";
 $code = new Code();
 
-if (isset($_POST['barang_add_btn'])) {
-    $nmbarang = $_POST['nmbarang'];
+if (isset($_POST['baju_add_btn'])) {
+    $nmbaju = $_POST['nmbaju'];
     $jumlah = $_POST['jumlah'];
     $harga = $_POST['harga'];
 
-    $add_status = $code->add_data($nmbarang, $jumlah, $harga);
+    $add_status = $code->add_data($nmbaju, $jumlah, $harga);
     if ($add_status) {
-        header('Location: barang_read.php');
+        header('Location: baju_read.php');
     }
 }
 ?>
@@ -20,7 +20,7 @@ if (isset($_POST['barang_add_btn'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tambah Barang</title>
+    <title>Tambah baju</title>
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/all.min.css">
     <link rel="stylesheet" href="./css/style.css">
@@ -49,15 +49,15 @@ if (isset($_POST['barang_add_btn'])) {
                 <!-- form start -->
                 <div class="card">
                     <div class="card-header">
-                        <h3>Tambah data barang
-                            <a href="barang_read.php" class="btn btn-danger float-end">Back</a>
+                        <h3>Tambah data baju
+                            <a href="baju_read.php" class="btn btn-danger float-end">Back</a>
                         </h3>
                     </div>
                     <div class="card-body">
                         <form action="" method="POST">
                             <div class="mb-3">
-                                <label>Nama Barang</label>
-                                <input type="text" name="nmbarang" class="form-control" />
+                                <label>Nama baju</label>
+                                <input type="text" name="nmbaju" class="form-control" />
                             </div>
                             <div class="mb-3">
                                 <label>Jumlah</label>
@@ -68,7 +68,7 @@ if (isset($_POST['barang_add_btn'])) {
                                 <input type="text" name="harga" class="form-control" />
                             </div>
                             <div class="mb-3">
-                                <button type="submit" name="barang_add_btn" class="btn btn-primary">Tambah Barang</button>
+                                <button type="submit" name="baju_add_btn" class="btn btn-primary">Tambah Baju</button>
                             </div>
                         </form>
                     </div>
