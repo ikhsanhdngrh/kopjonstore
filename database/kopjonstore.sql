@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 20, 2023 at 01:41 PM
+-- Generation Time: Jan 26, 2023 at 08:32 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -39,9 +39,7 @@ CREATE TABLE `data_barang` (
 --
 
 INSERT INTO `data_barang` (`id`, `nmbarang`, `jumlah`, `harga`) VALUES
-(1, 'Baju', '206', '50000'),
-(15, 'Baju distro', '23', '400000'),
-(16, 'Baju distro', '2', '40000');
+(25, 'baju hitam', '4', '50000');
 
 -- --------------------------------------------------------
 
@@ -62,9 +60,9 @@ CREATE TABLE `data_login` (
 --
 
 INSERT INTO `data_login` (`id`, `level`, `username`, `password`, `email`) VALUES
-(1, 'admin', 'superadmin', 'admin1', 'admin@gmail.com'),
-(2, 'user', 'ikhsan', 'ikhsan1', 'ikhsan@gmail.com'),
-(4, 'user', 'ikhsan2', 'ikhsan2', 'ikhsan2@gmail.com');
+(8, 'admin', 'superadmin', 'admin', 'admin@gmail.com'),
+(9, 'user', 'ikhsan1', 'ikhsan1', 'ikhsan1@gmail.com'),
+(11, 'user', 'ikhsan3', 'ikhsan3', 'ikhsan3@gmail.com');
 
 --
 -- Indexes for dumped tables
@@ -90,13 +88,13 @@ ALTER TABLE `data_login`
 -- AUTO_INCREMENT for table `data_barang`
 --
 ALTER TABLE `data_barang`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `data_login`
 --
 ALTER TABLE `data_login`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
