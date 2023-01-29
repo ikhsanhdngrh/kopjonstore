@@ -65,7 +65,7 @@ if (isset($_POST['register_btn'])) {
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text"><i class="fa fa-anchor"></i></span>
-                        <input type="text" name="level" class="form-control" placeholder="Level" />
+                        <input type="text" name="level" class="form-control" placeholder="User" value="user" readonly/>
                     </div>
                     <div class="d-grid">
                     <p class="text-center mb-1 text-danger" >

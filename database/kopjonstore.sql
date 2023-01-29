@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 26, 2023 at 08:32 AM
+-- Generation Time: Jan 26, 2023 at 01:24 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -20,26 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `kopjonstore`
 --
-
--- --------------------------------------------------------
-
---
--- Table structure for table `data_barang`
---
-
-CREATE TABLE `data_barang` (
-  `id` int(20) NOT NULL,
-  `nmbarang` varchar(50) NOT NULL,
-  `jumlah` varchar(20) NOT NULL,
-  `harga` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `data_barang`
---
-
-INSERT INTO `data_barang` (`id`, `nmbarang`, `jumlah`, `harga`) VALUES
-(25, 'baju hitam', '4', '50000');
 
 -- --------------------------------------------------------
 
@@ -62,17 +42,17 @@ CREATE TABLE `data_login` (
 INSERT INTO `data_login` (`id`, `level`, `username`, `password`, `email`) VALUES
 (8, 'admin', 'superadmin', 'admin', 'admin@gmail.com'),
 (9, 'user', 'ikhsan1', 'ikhsan1', 'ikhsan1@gmail.com'),
-(11, 'user', 'ikhsan3', 'ikhsan3', 'ikhsan3@gmail.com');
+(11, 'user', 'ikhsan3', 'ikhsan3', 'ikhsan3@gmail.com'),
+(77, 'user', 'ikhsan4', 'ikhsan4', 'ikhsan4@gmail.com'),
+(79, 'user', 'ikhsan5', 'ikhsan5', 'ikhsan5@gmail.com'),
+(80, 'user', 'ikhsan6', 'ikhsan6', 'ikhsan6@gmail.com'),
+(82, 'user', 'ikhsan7', 'ikhsan7', 'ikhsan7@gmail.com'),
+(84, 'user', 'ikhsan8', 'ikhsan8', 'ikhsan8@gmail.com'),
+(85, 'user', 'ikhsan9', 'ikhsan9', 'ikhsan9@gmail.com');
 
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `data_barang`
---
-ALTER TABLE `data_barang`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `data_login`
@@ -85,16 +65,10 @@ ALTER TABLE `data_login`
 --
 
 --
--- AUTO_INCREMENT for table `data_barang`
---
-ALTER TABLE `data_barang`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
-
---
 -- AUTO_INCREMENT for table `data_login`
 --
 ALTER TABLE `data_login`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
