@@ -4,7 +4,7 @@ include "./data/code.php";
 $code = new Code();
 $user = $pass = $confpass = $email = $level = $cek_err = "";
 if (isset($_POST['register_btn'])) {
-    $level = $_POST['level'];
+    $level1 = 'user';
     $username = $_POST['username'];
     $password = $_POST['password'];
     $confirmpassword = $_POST['confirmpassword'];
@@ -12,8 +12,14 @@ if (isset($_POST['register_btn'])) {
 
     if (empty($username) && empty($password) && empty($confirmpassword) && empty($email) && empty($level)) {
         $cek_err = "Form tidak boleh kosong!";
-    } else if ($password == $confirmpassword) {
-        $add_status = $code->register($level, $username, $password, $email);
+    }else if(empty($username)){
+        $cek_err = "Nama tidak boleh kosong!";
+    }else if (empty($password)) {
+        $cek_err = "Password tidak boleh kosong!";
+    }else if (empty($email)) {
+        $cek_err = "Email tidak boleh kosong!";
+    }else if ($password == $confirmpassword) {
+        $add_status = $code->register($level1, $username, $password, $email);
         if ($add_status) {
         }
 
@@ -65,7 +71,7 @@ if (isset($_POST['register_btn'])) {
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text"><i class="fa fa-anchor"></i></span>
-                        <input type="text" name="level" class="form-control" placeholder="User" value="user" readonly/>
+                        <input type="text" name="level" class="form-control" placeholder="User" readonly/>
                     </div>
                     <div class="d-grid">
                     <p class="text-center mb-1 text-danger" >

@@ -101,7 +101,6 @@ class Code
     //Tabel login
     public function add_data_user($level, $username, $password, $email){
         $data = $this->db->prepare('INSERT INTO data_login (level,username,password,email) VALUES (?, ?, ?, ?)');
-        
         $data->bindParam(1, $level);
         $data->bindParam(2, $username);
         $data->bindParam(3, $password);
@@ -122,18 +121,6 @@ class Code
         return $data->rowCount();
     }
 
-    public function cek_login($user, $mail){
-        $query = $this->db->prepare('SELECT * FROM data_login WHERE username=? AND email=?');
-        $query->execute(array($user,$mail));
-        $count = $query->rowCount();
-        if($count > 0)
-        {
-            echo "<script> alert('Username atau Email sudah dipakai!');</script>";
-            return $hasil = $query->fetch();
-        }else{
-            return 'gagal';
-        }
-    }
     public function register($level, $username, $password, $email){
         $data = $this->db->prepare('INSERT INTO data_login (level,username,password,email) VALUES (?, ?, ?, ?)');
         
@@ -217,7 +204,7 @@ class Code
         
     }
     public function proses_login($user, $pass){
-        // untuk password kita enkrip dengan md5
+        
         $query = $this->db->prepare('SELECT * FROM data_login WHERE username=? AND password=?');
         $query->execute(array($user,$pass));
         $count = $query->rowCount();
