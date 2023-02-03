@@ -2,29 +2,31 @@
 session_start();
 include "../data/code.php";
 $code = new Code();
+
 if(isset($_GET['id'])){
+    $idb = $_GET['idb'];
     $id = $_GET['id']; 
-    $data_user = $code->get_by_id_user($id);
+    $baju_klr = $code->get_by_id_baju_klr($id);
+    $data_baju= $code->show_idb($idb);
+    
 }
 else
 {
-    header('Location: user_read.php');
-}
- 
-if(isset($_POST['user_update_btn'])){
+    header('Location: baju_keluar_read.php');
+};
+
+if(isset($_POST['baju_keluar_update_btn'])){
     $id = $_POST['id'];
-    $level = $_POST['level'];
-    $username = $_POST['username'];
-    $password = $_POST['password']; 
-    $email = $_POST['email']; 
-    $status_update = $code->update_user($id,$level,$username,$password,$email);
+    $idb = $_POST['idb'];
+    $tgl = $_POST['tanggal'];
+    $jumlah = $_POST['jumlah'];
+    $ket = $_POST['keterangan']; 
+    $status_update = $code->baju_klr_update($id,$idb,$tgl,$jumlah,$ket);
     if($status_update)
     {
-        header('Location:user_read.php');
+        header('Location:baju_keluar_read.php');
     }
-}
-
-
+};
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,7 +34,7 @@ if(isset($_POST['user_update_btn'])){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Data User</title>
+    <title>Edit Data Keluar Stock Baju</title>
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/all.min.css">
     <link rel="stylesheet" href="./css/style.css">
@@ -61,46 +63,35 @@ if(isset($_POST['user_update_btn'])){
                 <!-- form start -->
                 <div class="card">
                     <div class="card-header">
-                        <h3>Edit data user
-                            <a href="user_read.php" class="btn btn-danger float-end">Back</a>
+                        <h3>Tambah data keluar stock baju
+                            <a href="baju_keluar_read.php" class="btn btn-danger float-end">Back</a>
                         </h3>
                     </div>
                     <div class="card-body">
                         <form action="" method="POST">
-                            <input type="hidden" name="id" value="<?php echo $data_user['id']; ?>"/>
+                            <input type="hidden" name="id" value="<?php echo $baju_klr['id']; ?>"/>
+                            <input type="hidden" name="idb" value="<?php echo $baju_klr['idb']; ?>"/>
                             <div class="mb-3">
-                                <label>Level</label>
-                                <br>
-                                <?php
-                                $selected = $data_user['level'];
-                                $option = array('admin', 'user');
-
-                                echo "<select id='level' name='level' select class='form-select' aria-label='Default select example'>";
-                                foreach($option as $option){
-                                    if($selected == $option){
-                                        echo "<option value='$option' selected='selected'>$option</option>";
-                                    }else{
-                                        echo "<option value='$option'>$option</option>";
-                                    }
-                                    
-                                }
-                                echo "</select>"
-                                ?>
+                                <label>Tanggal</label>
+                                <input type="date" name="tanggal" value="<?php echo $baju_klr['tgl']; ?>" class="form-control" />
+                            </div>
+                            <?php
+                            foreach ($data_baju as $row) {
+                                echo '<div class="mb-3">
+                                <label>Nama Baju</label>
+                                <input type="text" name="nmbaju" value="'. $row['nmbaju'] .' '. $row["harga"].'/pcs" class="form-control" disabled/>
+                            </div>'
+                                ;}?>
+                            <div class="mb-3">
+                                <label>Jumlah</label>
+                                <input type="text" name="jumlah" value="<?php echo $baju_klr['jumlah']; ?>" class="form-control" />
                             </div>
                             <div class="mb-3">
-                                <label>Username</label>
-                                <input type="text" name="username" value="<?php echo $data_user['username']; ?>" class="form-control" />
+                                <label>Keterangan</label> 
+                                <input type="text" name="keterangan" value="<?php echo $baju_klr['ket']; ?>" class="form-control" />
                             </div>
                             <div class="mb-3">
-                                <label>Password</label> 
-                                <input type="text" name="password" value="<?php echo $data_user['password']; ?>" class="form-control" />
-                            </div>
-                            <div class="mb-3">
-                                <label>Email</label> 
-                                <input type="text" name="email" value="<?php echo $data_user['email']; ?>" class="form-control" />
-                            </div>
-                            <div class="mb-3">
-                                <button type="submit" name="user_update_btn" class="btn btn-primary">Edit User</button>
+                                <button type="submit" name="baju_keluar_update_btn" class="btn btn-primary">Edit Stock Keluar</button>
                             </div>
                         </form>
                     </div>

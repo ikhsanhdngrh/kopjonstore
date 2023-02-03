@@ -2,15 +2,16 @@
 session_start();
 include "../data/code.php";
 $code = new Code();
-$data_baju = $code->show();
+$data_baju_keluar = $code->show_baju_klr();
 
-if(isset($_GET['baju_delete']))
+if(isset($_GET['id']))
 {
-    $idb = $_GET['baju_delete'];
-    $status_hapus = $code->delete($idb);
-    if($status_hapus)
+    $id = $_GET['id'];
+    $idb = $_GET['idb'];
+    $status_hapus_baju_klr = $code->baju_klr_delete($id, $idb);
+    if($status_hapus_baju_klr)
     {
-        header('Location: baju_read.php');
+        header('Location: baju_keluar_read.php');
     }
 }
 ?>
@@ -20,7 +21,7 @@ if(isset($_GET['baju_delete']))
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Baju</title>
+    <title>Data Keluar Stock Baju</title>
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/all.min.css">
     <link rel="stylesheet" href="./css/style.css">
@@ -50,35 +51,39 @@ if(isset($_GET['baju_delete']))
                 <!-- form start -->
                 <div class="card">
                     <div class="card-header">
-                        <h3>Data Baju
-                        <a href="baju_create.php" class="btn btn-success float-end" >Tambah Baju</a>
+                        <h3>Data Keluar Stock Baju
+                        <a href="baju_keluar_create.php" class="btn btn-success float-end" >Tambah Data</a>
                         </h3>
                     </div>
                     <div class="card-body">
                         <table class="table table-bordered table-striped">
                             <thead>
                                 <th>No.</th>
+                                <th>Tanggal</th>
                                 <th>Nama Baju</th>
-                                <th>Stock</th>
-                                <th>Harga(Pcs)</th>
+                                <th>Jumlah</th>
+                                <th>Harga(pcs)</th>
+                                <th>Keterangan</th>
                                 <th colspan="2" class="text-center">Action</th>
                             </thead>
                             <tbody>
                                 <?php
                                 $no = 1;
-                                foreach ($data_baju as $row) {
+                                foreach ($data_baju_keluar as $row) {
 
                                     echo "<tr>";
-                                    echo "<td>" . $no++. "</td>";
+                                    echo "<td>" . $no++ . "</td>";
+                                    echo "<td>" . $row['tgl'] . "</td>";
                                     echo "<td>" . $row['nmbaju'] . "</td>";
-                                    echo "<td>" . $row['stock'] . "</td>";
+                                    echo "<td>" . $row['jumlah'] . "</td>";
                                     echo "<td>" . $row['harga'] . "</td>";
-                                    echo "<td class='text-center'><a class='btn btn-primary' href='baju_update.php?idb=" . $row['idb'] ."'>Edit</a></td>
-                                    <td class='text-center'><button type='button' class='btn btn-danger' data-bs-toggle='modal' data-bs-target='#hapus".$row['idb'] ."'>
+                                    echo "<td>" . $row['ket'] . "</td>";
+                                    echo "<td class='text-center'><a class='btn btn-primary' href='baju_keluar_update.php?id=" . $row['id'] .'&idb='. $row['idb'] ."'>Edit</a></td>
+                                    <td class='text-center'><button type='button' class='btn btn-danger' data-bs-toggle='modal' data-bs-target='#hapus". $row['id'] ."'>
                                     Hapus</button></td>
                                     
                                     <!--Pesan Confirmasi Hapus Data -->
-                                    <div class='modal' id='hapus".$row['idb'] ."' tabindex='-1'>
+                                    <div class='modal' id='hapus".$row['id'] ."' tabindex='-1'>
                                     <div class='modal-dialog'>
                                       <div class='modal-content'>
                                         <div class='modal-header'>
@@ -90,7 +95,7 @@ if(isset($_GET['baju_delete']))
                                         </div>
                                         <div class='modal-footer'>
                                           <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Close</button>
-                                          <a class='btn btn-danger' href='baju_read.php?baju_delete=" . $row['idb'] . "'>Hapus</a>
+                                          <a class='btn btn-danger' href='baju_keluar_read.php?id=" . $row['id'] .'&idb='. $row['idb'] . "'>Hapus</a>
                                         </div>
                                       </div>
                                     </div>
@@ -102,7 +107,7 @@ if(isset($_GET['baju_delete']))
                     </div>
                     <div class="card-header">
                         <h3>
-                        <button type="submit" class="btn btn-success float" onclick="window.open('baju_report.php', '_blank') ">Export</button>
+                        <button type="submit" class="btn btn-success float" onclick="window.open('baju_keluar_report.php', '_blank') ">Export</button>
                         </h3>
                     </div>
                 </div>

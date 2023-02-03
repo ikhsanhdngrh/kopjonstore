@@ -2,21 +2,21 @@
 session_start();
 include "../data/code.php";
 $code = new Code();
-if(isset($_GET['id'])){
-    $id = $_GET['id']; 
-    $data_baju = $code->get_by_id($id);
+if(isset($_GET['idb'])){
+    $idb = $_GET['idb']; 
+    $data_baju = $code->get_by_id($idb);
 }
 else
 {
     header('Location: baju_read.php');
-}
+};
  
 if(isset($_POST['baju_update_btn'])){
-    $id = $_POST['id'];
+    $idb = $_POST['idb'];
     $nmbaju = $_POST['nmbaju'];
-    $jumlah = $_POST['jumlah'];
+    $stock = $_POST['stock'];
     $harga = $_POST['harga']; 
-    $status_update = $code->update($id,$nmbaju,$jumlah,$harga);
+    $status_update = $code->update($idb,$nmbaju,$stock,$harga);
     if($status_update)
     {
         header('Location:baju_read.php');
@@ -29,7 +29,7 @@ if(isset($_POST['baju_update_btn'])){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Baju</title>
+    <title>Edit Data Baju</title>
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/all.min.css">
     <link rel="stylesheet" href="./css/style.css">
@@ -64,14 +64,14 @@ if(isset($_POST['baju_update_btn'])){
                     </div>
                     <div class="card-body">
                         <form action="" method="POST">
-                            <input type="hidden" name="id" value="<?php echo $data_baju['id']; ?>"/>
+                            <input type="hidden" name="idb" value="<?php echo $data_baju['idb']; ?>"/>
                             <div class="mb-3">
                                 <label>Nama Baju</label>
                                 <input type="text" name="nmbaju" value="<?php echo $data_baju['nmbaju']; ?>" class="form-control" />
                             </div>
                             <div class="mb-3">
-                                <label>Jumlah</label>
-                                <input type="text" name="jumlah" value="<?php echo $data_baju['jumlah']; ?>" class="form-control" />
+                                <label>Stock</label>
+                                <input type="text" name="stock" value="<?php echo $data_baju['stock']; ?>" class="form-control" />
                             </div>
                             <div class="mb-3">
                                 <label>Harga</label> 

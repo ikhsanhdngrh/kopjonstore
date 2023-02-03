@@ -20,7 +20,7 @@ if(isset($_GET['user_delete']))
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Data User</title>
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/all.min.css">
     <link rel="stylesheet" href="./css/style.css">
@@ -57,21 +57,24 @@ if(isset($_GET['user_delete']))
                     <div class="card-body">
                         <table class="table table-bordered table-striped">
                             <thead>
-                                <th>ID</th>
+                                <th>No.</th>
                                 <th>Username</th>
                                 <th>Password</th>
                                 <th>Email</th>
+                                <th>Level Account</th>
                                 <th colspan="2" class="text-center">Action</th>
                             </thead>
                             <tbody>
                                 <?php
+                                $no=1;
                                 foreach ($data_login as $row) {
 
                                     echo "<tr>";
-                                    echo "<td>" . $row['id'] . "</td>";
+                                    echo "<td>" . $no++. "</td>";
                                     echo "<td>" . $row['username'] . "</td>";
                                     echo "<td>" . $row['password'] . "</td>";
                                     echo "<td>" . $row['email'] . "</td>";
+                                    echo "<td>" . $row['level'] . "</td>";
                                     echo "<td class='text-center'><a class='btn btn-primary' href='user_update.php?id=" . $row['id'] ."'>Edit</a></td>
                                         <td class='text-center'><button type='button' class='btn btn-danger' data-bs-toggle='modal' data-bs-target='#hapus".$row['id'] ."'>
                                         Hapus</button></td>

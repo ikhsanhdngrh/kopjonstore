@@ -2,15 +2,17 @@
 session_start();
 include "../data/code.php";
 $code = new Code();
+$data_baju_masuk = $code->show();
 
-if (isset($_POST['baju_add_btn'])) {
-    $nmbaju = $_POST['nmbaju'];
-    $stock = $_POST['stock'];
-    $harga = $_POST['harga'];
+if (isset($_POST['baju_msk_add_btn'])) {
+    $idb = $_POST['nmbaju'];//id baju
+    $tgl = $_POST['tanggal'];
+    $jumlah = $_POST['jumlah'];
+    $ket = $_POST['keterangan'];
 
-    $add_status = $code->add_data($nmbaju, $stock, $harga);
+    $add_status = $code->baju_msk($idb, $tgl, $jumlah, $ket);
     if ($add_status) {
-        header('Location: baju_read.php');
+        header('Location: baju_masuk_read.php');
     };
 };
 ?>
@@ -20,7 +22,7 @@ if (isset($_POST['baju_add_btn'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tambah baju</title>
+    <title>Tambah Data Masuk Stock Baju</title>
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/all.min.css">
     <link rel="stylesheet" href="./css/style.css">
@@ -49,26 +51,39 @@ if (isset($_POST['baju_add_btn'])) {
                 <!-- form start -->
                 <div class="card">
                     <div class="card-header">
-                        <h3>Tambah data baju
-                            <a href="baju_read.php" class="btn btn-danger float-end">Back</a>
+                        <h3>Tambah data masuk stock baju
+                            <a href="baju_masuk_read.php" class="btn btn-danger float-end">Back</a>
                         </h3>
                     </div>
                     <div class="card-body">
                         <form action="" method="POST">
                             <div class="mb-3">
-                                <label>Nama baju</label>
-                                <input type="text" name="nmbaju" class="form-control" />
+                                <label>Tanggal</label>
+                                <input name="tanggal" type="date" class="form-control">
+                            </div>
+                            <div class="form-group">
+									<label>Nama Baju</label>
+									<select name="nmbaju" class="custom-select form-control">
+									<option selected>Pilih Baju</option>
+									<?php
+									foreach ($data_baju_masuk as $row) {
+									?>
+										<option value="<?php echo $row['idb'] ?>"><?php echo $row['nmbaju'] ?> <?php echo $row['harga'] ?>/pcs.</option>
+										<?php
+								    }
+								    ?>
+									</select>
+								</div>
+                            <div class="mb-3">
+                                <label>Jumlah</label>
+                                <input type="text" name="jumlah" class="form-control" />
                             </div>
                             <div class="mb-3">
-                                <label>Stock</label>
-                                <input type="text" name="stock" class="form-control" />
+                                <label>Keterangan</label> 
+                                <input type="text" name="keterangan" class="form-control" />
                             </div>
                             <div class="mb-3">
-                                <label>Harga</label> 
-                                <input type="text" name="harga" class="form-control" />
-                            </div>
-                            <div class="mb-3">
-                                <button type="submit" name="baju_add_btn" class="btn btn-primary">Tambah Baju</button>
+                                <button type="submit" name="baju_msk_add_btn" class="btn btn-primary">Simpan</button>
                             </div>
                         </form>
                     </div>
