@@ -6,21 +6,3 @@
     text-decoration: none;
     color: skyblue;
 }
-
-.banner {
-    background: url("https://images.pexels.com/photos/669996/pexels-photo-669996.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")
-      no-repeat center center;
-    background-size: cover;
-    padding-top: 20%;
-    padding-bottom: 20%;
-    color: #fff;
-  }
-  .contact {
-    background: url("https://images.pexels.com/photos/842948/pexels-photo-842948.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1") no-repeat
-      center center;
-    background-size: cover;
-    padding-bottom: 20%;
-    padding-top: 20%;
-    color: #fff;
-  }
-  
