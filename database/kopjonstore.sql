@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 26, 2023 at 01:24 PM
+-- Generation Time: Feb 03, 2023 at 12:11 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -46,9 +46,7 @@ INSERT INTO `data_login` (`id`, `level`, `username`, `password`, `email`) VALUES
 (77, 'user', 'ikhsan4', 'ikhsan4', 'ikhsan4@gmail.com'),
 (79, 'user', 'ikhsan5', 'ikhsan5', 'ikhsan5@gmail.com'),
 (80, 'user', 'ikhsan6', 'ikhsan6', 'ikhsan6@gmail.com'),
-(82, 'user', 'ikhsan7', 'ikhsan7', 'ikhsan7@gmail.com'),
-(84, 'user', 'ikhsan8', 'ikhsan8', 'ikhsan8@gmail.com'),
-(85, 'user', 'ikhsan9', 'ikhsan9', 'ikhsan9@gmail.com');
+(88, 'admin', 'ikhsanadmin', 'ikhsanadmin', 'ikhsanadmin@gmail.com');
 
 --
 -- Indexes for dumped tables
@@ -68,7 +66,7 @@ ALTER TABLE `data_login`
 -- AUTO_INCREMENT for table `data_login`
 --
 ALTER TABLE `data_login`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

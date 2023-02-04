@@ -63,7 +63,7 @@ if(isset($_POST['baju_masuk_update_btn'])){
                 <!-- form start -->
                 <div class="card">
                     <div class="card-header">
-                        <h3>Tambah data masuk stock baju
+                        <h3>Edit data masuk stock baju
                             <a href="baju_masuk_read.php" class="btn btn-danger float-end">Back</a>
                         </h3>
                     </div>
